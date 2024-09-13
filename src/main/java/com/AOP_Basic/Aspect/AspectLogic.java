@@ -4,6 +4,7 @@ import com.AOP_Basic.Exception.MyException;
 import com.AOP_Basic.Model.Product;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import org.apache.catalina.mapper.Mapper;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -22,9 +23,9 @@ public class AspectLogic {
     public void myPointCut() {
     }
 
-    @Pointcut(value = "execution(* com.AOP_Basic.AOPService.*.throwException(..))")
-    public void myPointCutThrow() {
-    }
+//    @Pointcut(value = "execution(* com.AOP_Basic.AOPService.*.throwException(..))")
+//    public void myPointCutThrow() {
+//    }
 
 
 //    @Before("myPointCut()")
@@ -55,6 +56,7 @@ public class AspectLogic {
     @Around("myPointCut()")
     public Object logging(ProceedingJoinPoint pjp) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new Jdk8Module());
         String className = pjp.getTarget().getClass().getName();
         String methodName = pjp.getSignature().getName();
         Object[] args = pjp.getArgs();
@@ -62,7 +64,8 @@ public class AspectLogic {
         log.info("Class name -> " + className + " Method Name-> " + methodName + "  Args ->" + mapper.writeValueAsString(args));
         Object proceed = pjp.proceed();
         System.out.println("After----");
-      log.info("result-"+mapper.writeValueAsString(proceed));
+      log.info("Class name -> " + className + " Method Name-> " + methodName +" result-"+mapper.writeValueAsString(proceed));
+        System.out.println("Ready to commit to remote dev");
         return proceed;
     }
 }
