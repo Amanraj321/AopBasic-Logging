@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: AOP-Basic
+  dataSource:
+      url: jdbc:mysql://localhost:3306/AOP
+      username: root
+      password: root
+  output:
+    ansi:
+      enabled: ALWAYS
+  jpa:
+    hibernate:
+      ddl-auto: update
+
