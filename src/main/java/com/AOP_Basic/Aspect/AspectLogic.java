@@ -63,6 +63,7 @@ public class AspectLogic {
         Object proceed = pjp.proceed();
         System.out.println("After----");
       log.info("result-"+mapper.writeValueAsString(proceed));
+        System.out.println("testing dev changes");
         return proceed;
     }
 }
