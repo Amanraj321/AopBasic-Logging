@@ -18,13 +18,13 @@ import org.springframework.stereotype.Component;
 public class AspectLogic {
     Logger log = LoggerFactory.getLogger(AspectLogic.class);
 
-    @Pointcut(value = "execution(* com.AOP_Basic.*.*.*(..))")
+    @Pointcut(value = "execution(* com.AOP_Basic.Controller.*.*(..))")
     public void myPointCut() {
     }
 
-    @Pointcut(value = "execution(* com.AOP_Basic.AOPService.*.throwException(..))")
-    public void myPointCutThrow() {
-    }
+//    @Pointcut(value = "execution(* com.AOP_Basic.AOPService.*.throwException(..))")
+//    public void myPointCutThrow() {
+//    }
 
 
 //    @Before("myPointCut()")
