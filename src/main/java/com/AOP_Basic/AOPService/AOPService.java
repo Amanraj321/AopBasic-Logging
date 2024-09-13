@@ -28,8 +28,8 @@ public class AOPService {
         List<Product> productList = aopRepository.findAll();
         return productList;
     }
-//    public void throwException() {
-//       throw new MyException("this is custom thrown exception");
-//    }
+    public void throwException() {
+       throw new MyException("this is custom thrown exception");
+    }
 
 }

@@ -4,6 +4,7 @@ import com.AOP_Basic.Exception.MyException;
 import com.AOP_Basic.Model.Product;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import org.apache.catalina.mapper.Mapper;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -18,7 +19,7 @@ import org.springframework.stereotype.Component;
 public class AspectLogic {
     Logger log = LoggerFactory.getLogger(AspectLogic.class);
 
-    @Pointcut(value = "execution(* com.AOP_Basic.Controller.*.*(..))")
+    @Pointcut(value = "execution(* com.AOP_Basic.*.*.*(..))")
     public void myPointCut() {
     }
 
@@ -55,6 +56,7 @@ public class AspectLogic {
     @Around("myPointCut()")
     public Object logging(ProceedingJoinPoint pjp) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new Jdk8Module());
         String className = pjp.getTarget().getClass().getName();
         String methodName = pjp.getSignature().getName();
         Object[] args = pjp.getArgs();
