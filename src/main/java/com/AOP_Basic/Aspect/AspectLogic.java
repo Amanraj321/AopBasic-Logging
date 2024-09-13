@@ -64,8 +64,8 @@ public class AspectLogic {
         log.info("Class name -> " + className + " Method Name-> " + methodName + "  Args ->" + mapper.writeValueAsString(args));
         Object proceed = pjp.proceed();
         System.out.println("After----");
-      log.info("result-"+mapper.writeValueAsString(proceed));
-        System.out.println("testing dev changes");
+      log.info("Class name -> " + className + " Method Name-> " + methodName +" result-"+mapper.writeValueAsString(proceed));
+        System.out.println("Ready to commit to remote dev");
         return proceed;
     }
 }
